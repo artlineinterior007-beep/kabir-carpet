@@ -1,0 +1,139 @@
+Project: Kabir Carpet International — Single-page static website (React / Vite)
+
+Goal
+Build a single-page, production-ready, **static** website for Kabir Carpet International that is elegant, animated, and highly visual. No backend, no admin, no CRUD — the product catalog is a static JSON file + images the user will upload to the repo. The site must be deployable to Vercel as a static app (build output only).
+
+High-level requirements
+• Tech: React (Vite), Tailwind CSS, Framer Motion (or GSAP) for animations. No server code. No databases.
+• Output: Complete repo with `package.json`, Vite config, Tailwind config, `public/` folder for static assets, `src/` React app, `README.md` and `vercel.json` for Vercel deployment.
+• Catalog: Static file `public/data/products.json` and product images in `public/catalog/`. The site loads and renders these client-side.
+• No prices: product data must NOT include price fields; UI must not show prices.
+• Fonts / calligraphy: Use elegant calligraphic heading accent + refined serif for headings and a clean sans for body. Suggested default fonts: Georgia-like serif via Google Fonts `Playfair Display` for headings + decorative calligraphy `Great Vibes` for logo/headline accent + `Inter` for body. Provide CSS variables so fonts/colors can be swapped easily.
+• No contact form: show owner contact info (mailto links & clickable phone numbers) in footer and contact section. No transactional emails.
+
+Design / UX (one-page sections)
+The site is a long-scroll single page with smooth section transitions and anchored navigation:
+1. Header (sticky):
+   - Transparent over hero, becomes solid on scroll.
+   - Logo (user will upload) left, nav links right (Home • About • Process • Catalog • History • UVP • Contact).
+   - Smooth scroll to sections.
+2. Hero:
+   - Full-bleed hero with elegant parallax or Ken Burns on a carpet image.
+   - Animated headline: use calligraphic accent font for a short brand line (e.g., "Kabir Carpet International") and Playfair Display for subheadline like "Crafting Exquisite Carpets from Mirzapur".
+   - CTA: "Explore Our Catalog" smooth-scrolls to catalog.
+3. About / Our Story:
+   - Short, warm narrative (prefill from provided text: founded 1985, third generation).
+   - Small montage of artisan photos and a subtle reveal animation.
+4. Manufacturing / Process:
+   - Step-by-step horizontal or stacked blocks: Sourcing → Knotting/Weaving → Washing/Finishing → Final.
+   - Each step includes icon/image, short text, and a soft reveal/parallax.
+5. Catalog (primary interactive section):
+   - Loads `public/data/products.json` client-side.
+   - Responsive grid of product cards (masonry/staggered look optional).
+   - Product card must show image, product name, short description excerpt, materials, types, styles, and sizes (no price).
+   - Filters (client-side only): by material, type, style, size. Filters persist while navigating the page. Include search by name/description.
+   - Clicking a product opens a modal/lightbox with:
+       • Large gallery (swipe + keyboard support),
+       • Full description, materials, types, styles, sizes,
+       • "Contact for quote" button that opens `mailto:internationalkabircarpet@gmail.com` with prefilled subject and product slug in body.
+   - Lazy-load images for performance.
+6. History (timeline):
+   - Vertical timeline with years (1985 → present). Smooth reveal animation per milestone.
+7. UVP / Why choose us:
+   - 3–4 stylized cards: 3rd generation craftsmanship, global materials, custom sizes, desi artistry for global buyers.
+8. Contact / Footer:
+   - Owner contact cards (Taufique & Mohammad) with phone clickable (tel:) and email (mailto:).
+   - Company email: internationalkabircarpet@gmail.com
+   - Location anchor linking to Google Maps (Kantit, Mirzapur).
+   - Social icons: Instagram (kabircarpetinternational), Threads (kabircarpetinternational), Facebook link.
+   - Copyright and small site credits.
+
+Catalog data contract (what user will upload)
+Place this `products.json` in `public/data/products.json`. The generator must include a sample `public/data/products.json` with 3 sample entries and images in `public/catalog/`.
+
+JSON schema for each product (no prices):
+{
+  "id": "uuid-or-slug",
+  "name": "Mirzapur Classic",
+  "slug": "mirzapur-classic",
+  "description": "Short to medium paragraph describing design, origin, weave, and special features.",
+  "materials": ["wool", "banana silk"],
+  "types": ["hand-knotted", "Gabbeh"],
+  "styles": ["traditional", "floral"],
+  "sizes": ["2x2", "5x8", "custom"],
+  "images": ["mirzapur-classic-1.jpg","mirzapur-classic-2.jpg"],
+  "featured": true,
+  "created_at": "2024-10-01T00:00:00Z"
+}
+
+Implementation details for the generator
+• Project structure the generator must produce:
+  - /public/
+    - /catalog/ (placeholders sample images)
+    - /data/products.json (sample)
+    - /logo.svg (placeholder)
+  - /src/
+    - main.jsx, App.jsx
+    - components/ (Header, Hero, Section, ProductGrid, ProductCard, ProductModal, Filters, Timeline, Footer)
+    - styles/ (Tailwind base + custom CSS variables)
+  - index.html, package.json, tailwind.config.js, postcss.config.js, vite.config.js
+  - README.md with exact instructions (see below)
+  - vercel.json for static deployment
+• Frontend behavior:
+  - Fetch `/data/products.json` at runtime with `fetch('/data/products.json')`.
+  - All filtering/search must be client-side; show counts and active filter tags.
+  - Use Framer Motion for entry animations and modal transitions (or GSAP if preferred).
+  - Images: responsive `srcset` technique recommended; lazy-load with `loading="lazy"`.
+  - Accessibility: alt text from filenames or `alt` key in JSON if present. Keyboard navigation for modal.
+• Styling & theme:
+  - Default color variables:
+    --bg: #F5EFE6 (warm oatmeal)
+    --accent: #8E3B3B (terracotta)
+    --deep: #14213D (deep indigo)
+    --gold: #CBA135
+  - CSS variable file for easy theme changes.
+  - Include a subtle carpet texture overlay in hero via CSS background-image (low opacity), with option to disable.
+  - Provide Google Fonts preloads for `Playfair Display`, `Great Vibes`, and `Inter`.
+• Performance:
+  - Keep dependencies minimal.
+  - Lazy-load non-critical scripts.
+  - Optimize sample images (small) and instructions on ideal image size (max 2–3 MB recommended; 1200–2400 px long edge).
+• README.md must explain:
+  - How to replace `public/logo.svg` with the provided logo.
+  - How to replace `public/catalog/*` images and update `public/data/products.json`.
+  - How the JSON schema works (example entry).
+  - Local dev steps:
+      1. `npm install`
+      2. `npm run dev`
+      3. `npm run build` then `npm run preview` to preview the production build.
+  - Vercel deployment steps: push to GitHub and import into Vercel or connect repo; set build command `npm run build` and output directory `dist`.
+  - No environment variables are required for the static site.
+• Extra polish (must be included):
+  - Smooth header transition on scroll.
+  - Parallax/slow-zoom on hero.
+  - Staggered reveal for product cards.
+  - Modal gallery with swipe + arrow keys.
+  - Small "download PDF catalog" placeholder button that links to `/catalog.pdf` if the user adds one.
+  - Provide clear code comments where the user should paste the logo and change contact details.
+
+Acceptance criteria (what you must deliver)
+• A repo that builds locally (`npm install && npm run dev`) and produces a static `dist/` for Vercel.
+• The Catalog must be fully functional by only replacing files in `public/data/products.json` and `public/catalog/` — no code changes needed to update the catalog.
+• No server code, no tokens, no env variables.
+• Elegant animations and typography as described.
+
+Prefill site text from user-provided data
+• Company: Kabir Carpet International
+• Founded: 1985 — third generation family business
+• Location: Kantit, Mirzapur, Uttar Pradesh, India
+• Owner contact block to prefill in footer:
+  - Taufique Alam — +91 82994 01959 — taufiquekabircarpet@gmail.com
+  - Mohammad Yusuf — +91 93365 70525 — yusufmzp@gmail.com
+  - Company email: internationalkabircarpet@gmail.com
+• Socials:
+  - Instagram: kabircarpetinternational
+  - Threads: kabircarpetinternational
+  - Facebook: https://www.facebook.com/share/19fDwDE9b2/?mibextid=wwXIfr
+
+Finish
+Generate the full single-page React (Vite) project exactly as described. Keep the code clean, well-commented, and include a clear README explaining how I (the site owner) can replace the logo and upload my product catalogue images + JSON so the catalog appears on the site with no further code edits.
