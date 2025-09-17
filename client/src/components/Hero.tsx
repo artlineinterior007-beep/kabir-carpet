@@ -27,18 +27,31 @@ export default function Hero() {
 
   const itemVariants = {
     hidden: { opacity: 0, y: 30 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.6, ease: "easeOut" },
+    },
   };
 
   return (
-    <section id="hero" className="relative min-h-screen flex items-center justify-center overflow-hidden carpet-texture" data-testid="hero-section">
+    <section
+      id="hero"
+      className="relative min-h-screen flex items-center justify-center overflow-hidden carpet-texture"
+      data-testid="hero-section"
+    >
       {/* Hero Background with Ken Burns Effect */}
       <div className="absolute inset-0 ken-burns">
         <img
-          src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&h=1080"
-          alt="Luxurious hand-knotted Persian carpet with intricate patterns"
+          src="/assets/hero.png"
+          alt="Kabir Carpet showcase"
           className="w-full h-full object-cover"
           data-testid="hero-background-image"
+          onError={(e) => {
+            const target = e.target as HTMLImageElement;
+            target.src =
+              "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&h=1080";
+          }}
         />
       </div>
 
@@ -66,7 +79,7 @@ export default function Hero() {
           variants={itemVariants}
           data-testid="hero-subtitle"
         >
-          Crafting Exquisite Carpets from Mirzapur
+          Crafting Exquisite Carpets from Mirzapur, India
         </motion.h2>
 
         <motion.p

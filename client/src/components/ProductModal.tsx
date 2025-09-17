@@ -13,13 +13,13 @@ export default function ProductModal({ product, onClose }: ProductModalProps) {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
   const nextImage = () => {
-    setCurrentImageIndex((prev) => 
+    setCurrentImageIndex((prev) =>
       prev === product.images.length - 1 ? 0 : prev + 1
     );
   };
 
   const prevImage = () => {
-    setCurrentImageIndex((prev) => 
+    setCurrentImageIndex((prev) =>
       prev === 0 ? product.images.length - 1 : prev - 1
     );
   };
@@ -28,24 +28,28 @@ export default function ProductModal({ product, onClose }: ProductModalProps) {
     const subject = `Inquiry about ${product.name}`;
     const body = `Hello,
 
-I am interested in the ${product.name} carpet. Please provide more information and pricing.
+I am interested in the ${
+      product.name
+    } carpet. Please provide more information and pricing.
 
 Product Details:
 - Name: ${product.name}
-- Materials: ${product.materials.join(', ')}
-- Types: ${product.types.join(', ')}
-- Styles: ${product.styles.join(', ')}
-- Available Sizes: ${product.sizes.join(', ')}
+- Materials: ${product.materials.join(", ")}
+- Types: ${product.types.join(", ")}
+- Styles: ${product.styles.join(", ")}
+- Available Sizes: ${product.sizes.join(", ")}
 
 Thank you!`;
 
-    return `mailto:internationalkabircarpet@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    return `mailto:internationalkabircarpet@gmail.com?subject=${encodeURIComponent(
+      subject
+    )}&body=${encodeURIComponent(body)}`;
   };
 
   const handleKeyDown = (e: React.KeyboardEvent) => {
-    if (e.key === 'Escape') onClose();
-    if (e.key === 'ArrowLeft') prevImage();
-    if (e.key === 'ArrowRight') nextImage();
+    if (e.key === "Escape") onClose();
+    if (e.key === "ArrowLeft") prevImage();
+    if (e.key === "ArrowRight") nextImage();
   };
 
   return (
@@ -68,7 +72,7 @@ Thank you!`;
 
         {/* Modal Content */}
         <motion.div
-          className="relative z-10 bg-card rounded-2xl max-w-4xl w-full max-h-[90vh] overflow-y-auto mx-4"
+          className="relative z-10 bg-white text-secondary rounded-2xl max-w-4xl w-full max-h-[90vh] overflow-y-auto mx-4"
           initial={{ scale: 0.9, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
           exit={{ scale: 0.9, opacity: 0 }}
@@ -76,7 +80,10 @@ Thank you!`;
         >
           {/* Header */}
           <div className="flex items-center justify-between p-6 border-b border-border">
-            <h3 className="font-playfair text-2xl font-bold text-secondary" data-testid="modal-title">
+            <h3
+              className="font-playfair text-2xl font-bold text-secondary"
+              data-testid="modal-title"
+            >
               {product.name}
             </h3>
             <Button
@@ -97,12 +104,13 @@ Thank you!`;
               <div data-testid="image-gallery">
                 <div className="aspect-square mb-4 rounded-xl overflow-hidden relative">
                   <img
-                    src={`/catalog/${product.images[currentImageIndex]}`}
+                    src={`/assets/${product.images[currentImageIndex]}`}
                     alt={`${product.name} - Image ${currentImageIndex + 1}`}
                     className="w-full h-full object-cover"
                     onError={(e) => {
                       const target = e.target as HTMLImageElement;
-                      target.src = "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=800";
+                      target.src =
+                        "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=800";
                     }}
                     data-testid="modal-main-image"
                   />
@@ -134,7 +142,10 @@ Thank you!`;
 
                 {/* Thumbnails */}
                 {product.images.length > 1 && (
-                  <div className="flex space-x-2 overflow-x-auto" data-testid="image-thumbnails">
+                  <div
+                    className="flex space-x-2 overflow-x-auto"
+                    data-testid="image-thumbnails"
+                  >
                     {product.images.map((image, index) => (
                       <button
                         key={index}
@@ -147,12 +158,13 @@ Thank you!`;
                         data-testid={`thumbnail-${index}`}
                       >
                         <img
-                          src={`/catalog/${image}`}
+                          src={`/assets/${image}`}
                           alt={`${product.name} thumbnail ${index + 1}`}
                           className="w-full h-full object-cover"
                           onError={(e) => {
                             const target = e.target as HTMLImageElement;
-                            target.src = "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&h=200";
+                            target.src =
+                              "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&h=200";
                           }}
                         />
                       </button>
@@ -164,33 +176,45 @@ Thank you!`;
               {/* Product Details */}
               <div className="space-y-6" data-testid="product-details">
                 <div>
-                  <p className="text-muted-foreground leading-relaxed" data-testid="modal-description">
+                  <p
+                    className="text-gray-700 leading-relaxed"
+                    data-testid="modal-description"
+                  >
                     {product.description}
                   </p>
                 </div>
 
-                <div className="grid grid-cols-2 gap-4" data-testid="product-specs">
+                <div
+                  className="grid grid-cols-2 gap-4"
+                  data-testid="product-specs"
+                >
                   <div>
-                    <h4 className="font-semibold text-secondary mb-2">Materials</h4>
-                    <p className="text-muted-foreground" data-testid="modal-materials">
+                    <h4 className="font-semibold text-secondary mb-2">
+                      Materials
+                    </h4>
+                    <p className="text-gray-700" data-testid="modal-materials">
                       {product.materials.join(", ")}
                     </p>
                   </div>
                   <div>
                     <h4 className="font-semibold text-secondary mb-2">Types</h4>
-                    <p className="text-muted-foreground" data-testid="modal-types">
+                    <p className="text-gray-700" data-testid="modal-types">
                       {product.types.join(", ")}
                     </p>
                   </div>
                   <div>
-                    <h4 className="font-semibold text-secondary mb-2">Styles</h4>
-                    <p className="text-muted-foreground" data-testid="modal-styles">
+                    <h4 className="font-semibold text-secondary mb-2">
+                      Styles
+                    </h4>
+                    <p className="text-gray-700" data-testid="modal-styles">
                       {product.styles.join(", ")}
                     </p>
                   </div>
                   <div>
-                    <h4 className="font-semibold text-secondary mb-2">Sizes Available</h4>
-                    <p className="text-muted-foreground" data-testid="modal-sizes">
+                    <h4 className="font-semibold text-secondary mb-2">
+                      Sizes Available
+                    </h4>
+                    <p className="text-gray-700" data-testid="modal-sizes">
                       {product.sizes.join(", ")}
                     </p>
                   </div>

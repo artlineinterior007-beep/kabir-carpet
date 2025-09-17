@@ -44,8 +44,9 @@ export default function About() {
 
               <p className="text-lg text-muted-foreground leading-relaxed">
                 Each carpet tells a story of meticulous craftsmanship, premium
-                materials sourced from across India, and the passionate dedication
-                of artisans who treat their work as both livelihood and art form.
+                materials sourced from across India, and the passionate
+                dedication of artisans who treat their work as both livelihood
+                and art form.
               </p>
 
               <motion.div
@@ -76,29 +77,29 @@ export default function About() {
               data-testid="about-gallery"
             >
               <img
-                src="https://images.unsplash.com/photo-1593030761757-71fae45fa0e7?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=800"
-                alt="Traditional carpet weaving artisan at work on handloom"
+                src="/assets/1.jpg"
+                alt="Kabir Carpet workshop photo 1"
                 className="rounded-lg shadow-lg w-full h-48 object-cover"
                 loading="lazy"
                 data-testid="gallery-image-1"
               />
               <img
-                src="https://images.unsplash.com/photo-1583847268964-b28dc8f51f92?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=600"
-                alt="Skilled hands creating intricate carpet knots and patterns"
+                src="/assets/2.jpg"
+                alt="Kabir Carpet workshop photo 2"
                 className="rounded-lg shadow-lg w-full h-32 object-cover"
                 loading="lazy"
                 data-testid="gallery-image-2"
               />
               <img
-                src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=600"
-                alt="Vibrant colored threads and yarns for carpet weaving"
+                src="/assets/3.jpg"
+                alt="Kabir Carpet workshop photo 3"
                 className="rounded-lg shadow-lg w-full h-32 object-cover"
                 loading="lazy"
                 data-testid="gallery-image-3"
               />
               <img
-                src="https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&h=800"
-                alt="Traditional carpet weaving workshop with multiple looms"
+                src="/assets/4.jpg"
+                alt="Kabir Carpet workshop photo 4"
                 className="rounded-lg shadow-lg w-full h-48 object-cover"
                 loading="lazy"
                 data-testid="gallery-image-4"
