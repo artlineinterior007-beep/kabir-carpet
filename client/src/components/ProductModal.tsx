@@ -24,7 +24,7 @@ export default function ProductModal({ product, onClose }: ProductModalProps) {
     );
   };
 
-  const handleContactForQuote = () => {
+  const getMailtoLink = () => {
     const subject = `Inquiry about ${product.name}`;
     const body = `Hello,
 
@@ -39,7 +39,7 @@ Product Details:
 
 Thank you!`;
 
-    window.location.href = `mailto:internationalkabircarpet@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    return `mailto:internationalkabircarpet@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
   };
 
   const handleKeyDown = (e: React.KeyboardEvent) => {
@@ -197,14 +197,14 @@ Thank you!`;
                 </div>
 
                 <div className="pt-4">
-                  <Button
-                    onClick={handleContactForQuote}
-                    className="w-full bg-primary hover:bg-primary/90 text-primary-foreground py-4 text-lg font-semibold"
+                  <a
+                    href={getMailtoLink()}
+                    className="w-full bg-primary hover:bg-primary/90 text-primary-foreground py-4 text-lg font-semibold inline-flex items-center justify-center rounded-md transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none ring-offset-background"
                     data-testid="contact-quote-btn"
                   >
                     <Mail className="w-5 h-5 mr-2" />
                     Contact for Quote
-                  </Button>
+                  </a>
                 </div>
               </div>
             </div>
