@@ -1,0 +1,205 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&family=Great+Vibes&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* Kabir Carpet Color Palette */
+  --bg: hsl(36, 25%, 95%);
+  --accent: hsl(5, 54%, 40%);
+  --deep: hsl(220, 45%, 18%);
+  --gold: hsl(45, 65%, 50%);
+  
+  /* Shadcn Color System */
+  --background: hsl(36, 25%, 95%);
+  --foreground: hsl(220, 25%, 15%);
+  --card: hsl(36, 20%, 98%);
+  --card-foreground: hsl(220, 20%, 20%);
+  --popover: hsl(36, 20%, 98%);
+  --popover-foreground: hsl(220, 20%, 20%);
+  --primary: hsl(5, 54%, 40%);
+  --primary-foreground: hsl(36, 25%, 95%);
+  --secondary: hsl(220, 45%, 18%);
+  --secondary-foreground: hsl(36, 25%, 95%);
+  --muted: hsl(36, 15%, 88%);
+  --muted-foreground: hsl(220, 15%, 45%);
+  --accent: hsl(45, 65%, 50%);
+  --accent-foreground: hsl(220, 25%, 15%);
+  --destructive: hsl(0, 62%, 55%);
+  --destructive-foreground: hsl(36, 25%, 95%);
+  --border: hsl(36, 20%, 85%);
+  --input: hsl(36, 20%, 92%);
+  --ring: hsl(5, 54%, 40%);
+  --chart-1: hsl(203.8863, 88.2845%, 53.1373%);
+  --chart-2: hsl(159.7826, 100%, 36.0784%);
+  --chart-3: hsl(42.0290, 92.8251%, 56.2745%);
+  --chart-4: hsl(147.1429, 78.5047%, 41.9608%);
+  --chart-5: hsl(341.4894, 75.2000%, 50.9804%);
+  --sidebar: hsl(36, 20%, 98%);
+  --sidebar-foreground: hsl(220, 20%, 20%);
+  --sidebar-primary: hsl(5, 54%, 40%);
+  --sidebar-primary-foreground: hsl(36, 25%, 95%);
+  --sidebar-accent: hsl(45, 65%, 50%);
+  --sidebar-accent-foreground: hsl(220, 25%, 15%);
+  --sidebar-border: hsl(36, 20%, 85%);
+  --sidebar-ring: hsl(5, 54%, 40%);
+  
+  /* Typography */
+  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-serif: 'Playfair Display', Georgia, serif;
+  --font-script: 'Great Vibes', cursive;
+  --font-mono: Menlo, monospace;
+  
+  /* Design System */
+  --radius: 0.5rem;
+  
+  /* Shadows */
+  --shadow-2xs: 0px 2px 0px 0px hsl(5, 54%, 40% / 0.00);
+  --shadow-xs: 0px 2px 0px 0px hsl(5, 54%, 40% / 0.00);
+  --shadow-sm: 0px 2px 0px 0px hsl(5, 54%, 40% / 0.00), 0px 1px 2px -1px hsl(5, 54%, 40% / 0.00);
+  --shadow: 0px 2px 0px 0px hsl(5, 54%, 40% / 0.00), 0px 1px 2px -1px hsl(5, 54%, 40% / 0.00);
+  --shadow-md: 0px 2px 0px 0px hsl(5, 54%, 40% / 0.00), 0px 2px 4px -1px hsl(5, 54%, 40% / 0.00);
+  --shadow-lg: 0px 2px 0px 0px hsl(5, 54%, 40% / 0.00), 0px 4px 6px -1px hsl(5, 54%, 40% / 0.00);
+  --shadow-xl: 0px 2px 0px 0px hsl(5, 54%, 40% / 0.00), 0px 8px 10px -1px hsl(5, 54%, 40% / 0.00);
+  --shadow-2xl: 0px 2px 0px 0px hsl(5, 54%, 40% / 0.00);
+  --tracking-normal: 0em;
+  --spacing: 0.25rem;
+}
+
+@layer base {
+  * {
+    @apply border-border;
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+  }
+  
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+/* Custom Carpet Texture */
+.carpet-texture {
+  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><defs><pattern id="carpet" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse"><rect width="20" height="20" fill="%23ffffff" fill-opacity="0.02"/><circle cx="10" cy="10" r="1" fill="%23000000" fill-opacity="0.05"/></pattern></defs><rect width="100" height="100" fill="url(%23carpet)"/></svg>');
+}
+
+/* Ken Burns Animation */
+@keyframes kenBurns {
+  0% { 
+    transform: scale(1) translateX(0); 
+  }
+  100% { 
+    transform: scale(1.1) translateX(-2%); 
+  }
+}
+
+.ken-burns {
+  animation: kenBurns 20s ease-in-out infinite alternate;
+}
+
+/* Stagger Animation */
+@keyframes staggerFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.stagger-fade-in {
+  opacity: 0;
+  transform: translateY(30px);
+  animation: staggerFadeIn 0.6s ease-out forwards;
+}
+
+/* Timeline Styles */
+.timeline-item::before {
+  content: '';
+  position: absolute;
+  left: -6px;
+  top: 0;
+  width: 12px;
+  height: 12px;
+  background: var(--accent);
+  border-radius: 50%;
+  border: 3px solid var(--background);
+}
+
+.timeline-line {
+  position: absolute;
+  left: -1px;
+  top: 12px;
+  bottom: -12px;
+  width: 2px;
+  background: var(--border);
+}
+
+/* Modal backdrop blur */
+.modal-backdrop {
+  backdrop-filter: blur(8px);
+}
+
+/* Product card hover effects */
+.product-card {
+  transition: all 0.3s ease;
+}
+
+.product-card:hover {
+  transform: translateY(-4px);
+}
+
+/* Filter chip effects */
+.filter-chip {
+  transition: all 0.2s ease;
+}
+
+.filter-chip:hover {
+  transform: translateY(-1px);
+}
+
+/* Utility classes for font families */
+.font-playfair {
+  font-family: var(--font-serif);
+}
+
+.font-great-vibes {
+  font-family: var(--font-script);
+}
+
+.font-inter {
+  font-family: var(--font-sans);
+}
+
+/* Line clamp utility */
+.line-clamp-3 {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--muted);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--accent);
+}
